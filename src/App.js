@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Container, Box } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
+
+import Stepper from "./Stepper";
 
 function App() {
+  const theme = useTheme();
+
+  const [formState, setFormState] = useState({});
+
+  const onSubmit = (data) => setFormState((prev) => ({ ...prev, ...data }));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Box
+        boxShadow={2}
+        borderRadius={6}
+        padding={theme.spacing(3, 3)}
+        margin={theme.spacing(5, 0)}
+      >
+        <Stepper {...{ onSubmit }} />
+      </Box>
+    </Container>
   );
 }
 
